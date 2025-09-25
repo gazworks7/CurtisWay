@@ -1,0 +1,7 @@
+# Logs & runtime artifacts
+MQL5/Files/CurtisWay/logs/
+*.csv
+*.log
+# OS / editor
+.DS_Store
+Thumbs.db
