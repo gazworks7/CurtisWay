@@ -1,0 +1,10 @@
+//+------------------------------------------------------------------+
+//| CurtisWay Configuration (defaults for v0.1.2)                   |
+//+------------------------------------------------------------------+
+input double   RiskPercent          = 1.0;            // % of balance risked per trade
+input string   Symbols[]            = {"USDCAD","EURUSD"}; // tradable symbols
+input int      MagicBase            = 11000;          // base magic number for EAs/Services
+input string   LogPath              = "data/logs/";   // relative log path
+input double   MaxDailyLossPercent  = 5.0;            // daily stop loss cap (%)
+input string   TradingHours         = "07:00-16:00";  // broker time trading window
+input bool     NewsFilterEnabled    = true;           // use News Guard to block trades around news
