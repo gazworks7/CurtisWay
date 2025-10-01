@@ -1,5 +1,9 @@
 # CurtisWay
 
+
+
+➡ See [docs/trading_checklist.md](docs/trading_checklist.md) for the daily discipline checklist.
+
 CurtisWay is a modular MQL5 trading framework inspired by Curtis Faith's *Way of the Turtle*. It enforces mechanical rules through cooperating small programs (EAs + Services) instead of one large EA.
 
 ## Goals
