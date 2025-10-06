@@ -56,4 +56,8 @@
 - [ ] Screenshots saved (D1/H4 + P/L)
 - [ ] Lessons / tweaks queued (not changed live)
 
-**Signature:** ______________________
+**Signature:** ______________________## Mid-session check (≈13:15, new H4 bar)
+
+- [ ] <span style="color:red"><b>Still going OK?</b></span>
+- Notes (13:15): ____________________________
+
