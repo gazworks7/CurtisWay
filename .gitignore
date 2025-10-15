@@ -5,3 +5,5 @@ MQL5/Files/CurtisWay/logs/
 # OS / editor
 .DS_Store
 Thumbs.db
+# Ignore local trading journal logs
+Journal/
