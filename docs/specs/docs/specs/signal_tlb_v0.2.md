@@ -15,6 +15,22 @@ Provide CCI Trend Line Break (TLB) as an optional signal source that publishes t
 - CW/<SYMBOL>/SIGNAL/TLB  = { -1, 0, +1 }  (sell, none, buy)
 - CW/<SYMBOL>/SIGNAL/TLB/QUALITY = float  (0..1 R²)
 - CW/<SYMBOL>/SIGNAL/TLB/TIME = datetime  (server)
+### Global Variable Keys (Exact Names)
+
+| Key | Type | Meaning |
+|-----|------|----------|
+| `CW/<SYMBOL>/SIGNAL/TLB` | int | -1 = sell signal, 0 = none, +1 = buy signal |
+| `CW/<SYMBOL>/SIGNAL/TLB/QUALITY` | double | R² of trendline fit (0–1) |
+| `CW/<SYMBOL>/SIGNAL/TLB/TIME` | datetime | Time stamp of last signal |
+| `CW/HB/Signal_TLB` | datetime | Heartbeat (timestamp updated each poll) |
+| `CW/STATUS/Signal_TLB` | string | `"OK"` when running, `"ERR"` if internal fault |
+
+> **Example** for USDCAD symbol  
+> `CW/USDCAD/SIGNAL/TLB = 1` → buy  
+> `CW/USDCAD/SIGNAL/TLB/QUALITY = 0.83`  
+> `CW/USDCAD/SIGNAL/TLB/TIME = 2025-10-15 14:30`
+
+
 
 ## Rules (first pass)
 1) Detect swing points on CCI; build bullish/bearish lines with min touches & R² ≥ threshold.
@@ -42,8 +58,17 @@ Provide CCI Trend Line Break (TLB) as an optional signal source that publishes t
 - Pyramiding changes
 - Multi-symbol orchestration
 
+- ## QA / Verification Checklist (v0.2 Module Tests)
+
+| # | Test | Expected Result |
+|:-:|:------|:----------------|
+| 1 | Attach Indicator on USDCAD H1 | Draws trendlines with R² labels ≥ threshold |
+| 2 | Breaks line upward → GV `SIGNAL/TLB = 1` | Long signal written with QUALITY ≈ R² |
+| 3 | Breaks line downward → GV `SIGNAL/TLB = -1` | Short signal written |
+| 4 | No break → GV remains 0 | No noise signals |
+| 5 | Heartbeat `CW/HB/Signal_TLB` updates every poll | Timestamp advances normally |
+| 6 | Stop service → `STATUS/Signal_TLB` changes to ERR | Confirms error flagging |
+| 7 | Executor reads GV values in logs | End-to-end signal propagation confirmed |
 
 
-## Out of scope (v0.2)
-- Pyramiding changes
-- Multi-symbol orchestration
+
